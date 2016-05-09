@@ -1,0 +1,14 @@
+{
+    "type": "donut",
+    "name": "Cake",
+    "top": [
+        { "id": "5002", "type": "Glazed" }    
+    ],
+    "short": [  
+        { "id": "5006", "type": "Chocolate with Sprinkles" },
+        { "id": "5806", "type": "Not chocolate" }
+    ],
+    "long": [
+        { "id": "5004", "type": "Maple" }
+    ]
+}
