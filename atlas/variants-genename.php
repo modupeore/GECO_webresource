@@ -4,6 +4,14 @@
   require_once('atlas_fns.php'); //All the routines
   d_var_header();
 ?>
+  <script>
+   $(function() {
+      var availableTags = <?php include($_SESSION['variantlist']); ?>;
+      $("#genename").autocomplete({
+              source: availableTags
+      });
+    });
+  </script>
   <div id="metamenu">
 	<ul>
 		<li><a class="active" href="variants-genename.php">Gene Name</a></li>
@@ -46,7 +54,7 @@
   if ((isset($_POST['reveal']) || isset($_POST['downloadvalues'])) && !empty($_SESSION['select'])) {
     $output1 = "$base_path/OUTPUT/Voutput_".$explodedate.".par"; $output2 = "$base_path/OUTPUT/Voutput_".$explodedate.".txt";
     $pquery = 'perl '.$base_path.'/SQLscripts/fboutputvariantinfo.pl -g '.$_SESSION['select'].' -s '.$_SESSION['species'].' -o '.$output1.'';
-    print $pquery;shell_exec($pquery);
+    shell_exec($pquery);
     $rquery = file_get_contents($output1);
     $dloadquery = file_get_contents($output2); shell_exec ("rm -f ".$output2);
     if (count(explode ("\n", $rquery)) <= 13){

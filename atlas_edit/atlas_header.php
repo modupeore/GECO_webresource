@@ -181,9 +181,34 @@ function d_var_header() {
   <link href="jquery/jquery-ui-1.11.4.custom/jquery-ui.min.css" rel="stylesheet" type="text/css" />
   <script src="jquery/jquery-1.11.3.min.js"></script>
   <script src="jquery/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+  <?PHP
+  atlas_authenticate();
+  echo '<div id="headmenu">
+    <ul>
+	  <li><a class="active" href="variants.php">Variants Information</a></li>
+        <li><a href="kaksratios.php">KaKs Ratios</a></li>
+    </ul>
+  </div>';
+  echo '<table class="titlebutton"><tr><td>Variants Information  <img src="images/variant.png" width="45" height="45">
+  </td></tr></table>';
+}
+?>
+  
+<?php //KaKs Ratios Page
+function d_kaks_header() {
+  d_header();
+  echo '<meta http-equiv="content-type" content="text/html; charset=UTF-8">';
+  echo "<title>KAKS ratios</title>";
+  echo '<script type="text/javascript" src="//code.jquery.com/jquery-1.8.3.js"></script>';
+  echo "<style type= 'text/css'>";
+  echo '</style>';
+  ?>
+  <link href="jquery/jquery-ui-1.11.4.custom/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+  <script src="jquery/jquery-1.11.3.min.js"></script>
+  <script src="jquery/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
   <script>
    $(function() {
-      var availableTags = <?php include($_SESSION['variantlist']); ?>;
+      var availableTags = <?php include("names/chickenall.php"); ?>;
       $("#genename").autocomplete({
               source: availableTags
       });
@@ -191,7 +216,12 @@ function d_var_header() {
   </script>
   <?PHP
   atlas_authenticate();
-  echo '<table class="titlebutton"><tr><td>Variants Information  <img src="images/variant.png" width="45" height="45">
-  </td></tr></table>';
+  echo '<div id="headmenu">
+    <ul>
+	  <li><a href="variants.php">Variants Information</a></li>
+        <li><a class="active" href="kaksratios.php">KaKs Ratios</a></li>
+    </ul>
+  </div>';
+  echo '<table class="titlebutton"><tr><td>KaKs Ratios </td></tr></table>';
 }
 ?>

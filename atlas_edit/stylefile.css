@@ -244,6 +244,7 @@ padding: 20px;
     color: #8af;
 }
 
+/*Images on the variants Page*/
 .vbtn:hover {
   background-image:none;
   background:-webkit-gradient( linear, left top, left bottom, color-stop(1, #8af), color-stop(0.05, #ff8) );
@@ -252,4 +253,37 @@ padding: 20px;
   background-color:#ff8 /*8af*/;
   color: #fff;
   text-shadow:1px 1px 13px #fff;
+}
+
+/* For the Variants main menu Bar*/
+div#headmenu {
+    letter-spacing: 1px;
+    font-size: 20px;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-weight: normal;
+    text-align: center;
+    width: auto;
+}
+#headmenu ul {
+    height: auto;
+    padding: 8px 0px;
+    margin: 0px;
+}
+#headmenu li { 
+display: inline; 
+padding: 20px; 
+}
+#headmenu li a {
+    text-decoration: none;
+    color: black;
+    padding: 8px 10px;
+}
+#headmenu li a.active {
+    background-color: #8af;
+    color: #ff8;
+}
+
+#headmenu li a:hover:not(.active) {
+    background-color: #FFF;
+    color: #8af;
 }
