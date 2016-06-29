@@ -122,7 +122,7 @@ if ($species =~ /gallus/) {
   }
   elsif($gene) {
     $syntax = "select line, chrom,position, ref, alt, class, consequence,
-                genename, dbsnp where genename like \'%$gene%\'\" -v -o ";
+                genename, dbsnp where genename = \'$gene\'\" -v -o ";
   }
   print "$ibis$syntax$tempoutput\n\n";
   `$ibis$syntax$tempoutput`;
@@ -186,7 +186,7 @@ else {
   }
   elsif($gene) {
     $syntax = "select chrom,position,ref,alt,class,consequence,
-                genename, dbsnp where genename like \'%$gene%\'\" -v -o ";
+                genename, dbsnp where genename = \'$gene\'\" -v -o ";
   }
   print "$ibis$syntax$tempoutput\n\n";
   `$ibis$syntax$tempoutput`;
