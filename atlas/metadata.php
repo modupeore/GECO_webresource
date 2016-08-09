@@ -33,7 +33,40 @@
 ?>
 <?php
   //create query for DB display
-  if (!empty($_REQUEST['order'])) {
+  if (!empty($_GET['libs'])) {
+    // if the sort option was used
+    $_SESSION['num_recs'] = "all";
+
+    $terms = explode(",", $_GET['libs']);
+    $is_term = false;
+    foreach ($terms as $term) {
+      if (trim($term) != "") {
+        $is_term = true;
+      }
+    }
+    $_SESSION['select'] = $terms;
+    $_SESSION['column'] = "library_id";
+
+    $query = "select $table.*,$statustable.status from $table left outer join $statustable on $table.library_id = $statustable.library_id ";
+    if ($is_term) {
+        $query .= "WHERE ";
+    }
+    foreach ($_SESSION['select'] as $term) {
+      if (trim($term) == "") {
+        continue;
+      }
+      $query .= $table.".".$_SESSION['column'] . " =" . trim($term) . " OR ";
+    }
+    $query = rtrim($query, " OR ");
+    $query .= " ORDER BY " . $table.".".$_SESSION['column'] . " " . $_SESSION['dir'];
+
+    $result = $db_conn->query($query);
+    $num_total_result = $result->num_rows;
+    if ($_SESSION['num_recs'] != "all") {
+      $query .= " limit " . $_SESSION['num_recs'];
+    }
+  }
+  elseif (!empty($_REQUEST['order'])) {
     // if the sort option was used
     $_SESSION['sort'] = $_POST['sort'];
     $_SESSION['dir'] = $_POST['dir'];
@@ -287,7 +320,7 @@
 </form></tr></table>
 <hr>
 <?php
-  if(!empty($db_conn) && (!empty($_POST['order']) || !empty($_POST['meta_data']))) {
+  if(!empty($db_conn) && (!empty($_POST['order']) || !empty($_GET['libs']) || !empty($_POST['meta_data']))) {
     if ($num_total_result == 0){
       echo '<center>No results were found with your search criteria.<br>
       There are no "'.implode(",", $_SESSION["select"]).'" in "'.$_SESSION['column'].'".<center>';

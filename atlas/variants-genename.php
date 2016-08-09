@@ -57,8 +57,8 @@
     shell_exec($pquery);
     $rquery = file_get_contents($output1);
     $dloadquery = file_get_contents($output2); shell_exec ("rm -f ".$output2);
-    if (count(explode ("\n", $rquery)) <= 13){
-      echo '<center>No results were found with your search criteria.<center>';
+    if (count(explode ("\n", $rquery)) <= 14){
+      echo '<center>No results were found with your search criteria.<br>N.B: Search is case-sensitive<center>';
     }
     else {
       echo '<div class="gened">';
